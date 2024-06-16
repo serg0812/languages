@@ -75,7 +75,7 @@ if not st.session_state['authenticated']:
                 conn.close()
                 st.session_state['name'] = user[0]
                 st.session_state['surname'] = user[1]
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Invalid email or password")
 else:
