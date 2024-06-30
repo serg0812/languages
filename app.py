@@ -111,12 +111,23 @@ else:
 
     session_id = st.session_state['session_id']
     name = st.session_state['name']
+    #change the instuctions load to the below commented code once ready
+    # Load appropriate instruction file based on level and lesson
+    # level = st.session_state.get('level', 0)
+    # lesson = st.session_state.get('lesson', 1)
+    # instruction_file_path = f"instructions/level_{level}_lesson_{lesson}.txt"
 
-    with open("level_0.txt") as file:
+    # if os.path.exists(instruction_file_path):
+    #     with open(instruction_file_path) as file:
+    #         specific_instructions = file.read()
+    # else:
+    #     specific_instructions = "Default instructions as specific file is not found."
+
+    with open("instructions/level_2_lesson_2.txt") as file:
         level_0_instructions = file.read()
 
-    with open("instructions.txt") as file:
-        instructions = file.read()
+    with open("instructions/instructions.txt") as file:
+        specific_instructions = file.read()
 
     # Determine the appropriate system prompt text and store it in session state
     if 'system_prompt' not in st.session_state:
@@ -130,12 +141,10 @@ else:
             """ + f"{level_0_instructions}"
         else:
             st.session_state['system_prompt'] = f"""
-            You are a director of the best language school in the world. 
-            Your instructors can teach any language to the students from any origin.
             This session has this id {session_id}.
             The student name is {name}.
             Your detailed instructions are here: 
-            """ + f"{instructions}"
+            """ + f"{specific_instructions}"
 
     text = st.session_state['system_prompt']
 
